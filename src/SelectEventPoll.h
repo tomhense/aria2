@@ -42,7 +42,7 @@
 
 #include "a2functional.h"
 #ifdef ENABLE_ASYNC_DNS
-#include "AsyncNameResolver.h"
+#  include "AsyncNameResolver.h"
 #endif // ENABLE_ASYNC_DNS
 
 namespace aria2 {
@@ -142,7 +142,7 @@ private:
               command_ < entry.command_);
     }
 
-    int getFds(fd_set* rfdsPtr, fd_set* wfdsPtr);
+    ares_socket_t getFds(fd_set* rfdsPtr, fd_set* wfdsPtr);
 
     void process(fd_set* rfdsPtr, fd_set* wfdsPtr);
   };

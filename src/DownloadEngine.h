@@ -51,7 +51,7 @@
 #include "CheckIntegrityMan.h"
 #include "DNSCache.h"
 #ifdef ENABLE_ASYNC_DNS
-#include "AsyncNameResolver.h"
+#  include "AsyncNameResolver.h"
 #endif // ENABLE_ASYNC_DNS
 
 namespace aria2 {
@@ -136,10 +136,6 @@ private:
 #endif // ENABLE_BITTORRENT
 
   CUIDCounter cuidCounter_;
-
-#ifdef HAVE_ARES_ADDR_NODE
-  ares_addr_node* asyncDNSServers_;
-#endif // HAVE_ARES_ADDR_NODE
 
   std::unique_ptr<DNSCache> dnsCache_;
 
@@ -325,12 +321,6 @@ public:
   void setRefreshInterval(std::chrono::milliseconds interval);
 
   const std::string getSessionId() const { return sessionId_; }
-
-#ifdef HAVE_ARES_ADDR_NODE
-  void setAsyncDNSServers(ares_addr_node* asyncDNSServers);
-
-  ares_addr_node* getAsyncDNSServers() const { return asyncDNSServers_; }
-#endif // HAVE_ARES_ADDR_NODE
 
 #ifdef ENABLE_WEBSOCKET
   void setWebSocketSessionMan(std::unique_ptr<rpc::WebSocketSessionMan> wsman);
